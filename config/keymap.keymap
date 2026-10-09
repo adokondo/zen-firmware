@@ -5,6 +5,26 @@
 #include <dt-bindings/zmk/pointing.h>
 
 / {
+    behaviors {
+        corne_key_hold: corne_key_hold {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <250>;
+            bindings = <&kp>, <&kp>;
+            display-name = "Corne Key Hold 250ms";
+        };
+
+        corne_layer_hold: corne_layer_hold {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <250>;
+            bindings = <&mo>, <&kp>;
+            display-name = "Corne Layer Hold 250ms";
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
@@ -20,10 +40,10 @@
 
         layer_0 {
             bindings = <
-&kp ESCAPE  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp BSPC
-&kp TAB  &kp A  &kp S  &kp D  &mt LEFT_COMMAND F  &kp G  &kp H  &kp J  &kp K  &kp L  &kp MINUS  &kp ENTER
+&corne_key_hold ESCAPE TAB  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp BSPC
+&kp TAB  &kp A  &kp S  &kp D  &corne_key_hold LEFT_COMMAND F  &kp G  &kp H  &corne_key_hold LEFT_COMMAND J  &kp K  &kp L  &kp MINUS  &kp ENTER
 &kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp SPACE  &kp SPACE  &kp N  &kp M  &kp COMMA  &kp DOT  &kp UP_ARROW  &mt RSHFT QUESTION
-&kp LEFT_CONTROL  &kp LALT  &kp LEFT_COMMAND  &mt LEFT_COMMAND LANG2  &mo 2  &mo 1  &kp SPACE  &kp ENTER  &lt 2 LANG1  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW
+&kp LEFT_CONTROL  &kp LALT  &kp LEFT_COMMAND  &corne_layer_hold 1 LANG2  &mo 2  &mo 1  &kp SPACE  &kp ENTER  &corne_layer_hold 2 LANG1  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW
             >;
         };
 
